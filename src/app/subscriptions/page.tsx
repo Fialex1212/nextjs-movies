@@ -1,7 +1,11 @@
+import Plans from "@/components/Plans";
+
 export default function SubscriptionPage() {
   return (
-    <div>
-      <h1>Subscription page</h1>
-    </div>
+    <>
+      <div className="mt-[100px] md:mt-[130px] lg:mt-[150px]">
+        <Plans />
+      </div>
+    </>
   );
 }

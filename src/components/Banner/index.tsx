@@ -20,7 +20,7 @@ const Banner = () => {
             can also create your own watchlists, so you can easily find the
             content you want to watch.
           </p>
-          <button className="flex gap-[4px] text-[14px] lg:text-[18px] py-[15px] px-[24px] lg:py-[18px] bg-[var(--color-red-45)] hover:bg-[var(--color-red-60)] rounded-[8px]">
+          <button className="flex gap-[4px] text-[14px] lg:text-[18px] py-[15px] px-[24px] lg:py-[18px] bg-[var(--color-red-45)] hover:bg-[var(--color-red-60)] rounded-[8px] cursor-pointer">
             <Image src={"/icons/play.svg"} alt="play" width={24} height={24} />
             <p>Start Watching Now</p>
           </button>

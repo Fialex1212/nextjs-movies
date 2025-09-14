@@ -1,8 +1,15 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
+import FAQItem from "../FAQItem";
 
-const faqs = [
+interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = [
   {
     id: "01",
     question: "What is StreamVibe?",
@@ -53,93 +60,21 @@ const faqs = [
   },
 ];
 
-export default function TwoColumnAccordion() {
-  const [openItem, setOpenItem] = useState(null);
-
-  // component for smooth collapsing
-  const AccordionItem = ({ item }) => {
-    const contentRef = useRef(null);
-    const [height, setHeight] = useState(0);
-
-    useEffect(() => {
-      if (openItem === item.id) {
-        setHeight(contentRef.current.scrollHeight);
-      } else {
-        setHeight(0);
-      }
-    }, [openItem]);
-
-    return (
-      <div className="border-b border-gray-200">
-        <button
-          className="w-full text-left py-3 font-medium flex justify-between items-center"
-          onClick={() => setOpenItem(openItem === item.id ? null : item.id)}
-        >
-          {item.id} - {item.question}
-          <span className="ml-2">
-            {openItem === item.id ? (
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20 12H4"
-                />
-              </svg>
-            ) : (
-              <svg
-                className="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4v16m8-8H4"
-                />
-              </svg>
-            )}
-          </span>
-        </button>
-        <div
-          ref={contentRef}
-          style={{
-            maxHeight:
-              openItem === item.id && contentRef.current
-                ? `${contentRef.current.scrollHeight}px`
-                : "0px",
-          }}
-          className="overflow-hidden transition-all duration-300 ease-in-out"
-        >
-          <p className="py-2 text-gray-700">{item.answer}</p>
-        </div>
-      </div>
-    );
-  };
-
+const FAQList = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[30px]">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-[30px]">
       <div>
-        {faqs
-          .filter((_, idx) => idx <= 3)
-          .map((item) => (
-            <AccordionItem key={item.id} item={item} />
-          ))}
+        {faqs.slice(0, 4).map((item) => (
+          <FAQItem key={item.id} item={item} />
+        ))}
       </div>
       <div>
-        {faqs
-          .filter((_, idx) => idx >= 4)
-          .map((item) => (
-            <AccordionItem key={item.id} item={item} />
-          ))}
+        {faqs.slice(4).map((item) => (
+          <FAQItem key={item.id} item={item} />
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default FAQList;
