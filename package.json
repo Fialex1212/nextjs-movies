@@ -13,6 +13,7 @@
     "next": "15.5.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "simple-swizzle": "0.2.2",
     "swiper": "^12.0.1"
   },
   "devDependencies": {
